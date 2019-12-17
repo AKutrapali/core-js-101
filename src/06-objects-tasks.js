@@ -1,3 +1,4 @@
+
 /* ************************************************************************************************
  *                                                                                                *
  * Plese read the following tutorial before implementing tasks:                                   *
@@ -20,8 +21,13 @@
  *    console.log(r.height);      // => 20
  *    console.log(r.getArea());   // => 200
  */
-function Rectangle(/* width, height */) {
-  throw new Error('Not implemented');
+function Rectangle(width, height) {
+  this.width = width;
+  this.height = height;
+  // eslint-disable-next-line func-names
+  this.getArea = function () {
+    return this.width * this.height;
+  };
 }
 
 
@@ -35,8 +41,8 @@ function Rectangle(/* width, height */) {
  *    [1,2,3]   =>  '[1,2,3]'
  *    { width: 10, height : 20 } => '{"height":10,"width":20}'
  */
-function getJSON(/* obj */) {
-  throw new Error('Not implemented');
+function getJSON(obj) {
+  return JSON.stringify(obj);
 }
 
 
@@ -111,32 +117,53 @@ function fromJSON(/* proto, json */) {
  */
 
 const cssSelectorBuilder = {
-  element(/* value */) {
-    throw new Error('Not implemented');
+  element(value) {
+    this.value = value;
+    // eslint-disable-next-line func-names
+    this.stringify = function () {
+      return this.value;
+    };
   },
 
-  id(/* value */) {
-    throw new Error('Not implemented');
+  id(value) {
+    this.value = `#${value}`;
+    this.stringify = function () {
+      return this.value;
+    };
   },
 
-  class(/* value */) {
-    throw new Error('Not implemented');
+  class(value) {
+    this.value = `.${value}`;
+    this.stringify = function () {
+      return this.value;
+    };
   },
 
-  attr(/* value */) {
-    throw new Error('Not implemented');
+  attr(value) {
+    this.value = `[${value}]`;
+    this.stringify = function () {
+      return this.value;
+    };
   },
 
-  pseudoClass(/* value */) {
-    throw new Error('Not implemented');
+  pseudoClass(value) {
+    this.value = `:${value}`;
+    this.stringify = function () {
+      return this.value;
+    };
   },
 
-  pseudoElement(/* value */) {
-    throw new Error('Not implemented');
+  pseudoElement(value) {
+    this.value = `::${value}`;
+    this.stringify = function () {
+      return this.value;
+    };
   },
 
-  combine(/* selector1, combinator, selector2 */) {
-    throw new Error('Not implemented');
+  combine(selector1, combinator, selector2) {
+    this.stringify = function () {
+      return `${selector1.stringify()}${combinator}${selector2.stringify()}`;
+    };
   },
 };
 
