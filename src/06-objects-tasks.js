@@ -57,8 +57,8 @@ function getJSON(obj) {
  *    const r = fromJSON(Circle.prototype, '{"radius":10}');
  *
  */
-function fromJSON(/* proto, json */) {
-  throw new Error('Not implemented');
+function fromJSON(proto, json) {
+  return Object.setPrototypeOf(JSON.parse(json), proto);
 }
 
 
@@ -117,53 +117,32 @@ function fromJSON(/* proto, json */) {
  */
 
 const cssSelectorBuilder = {
-  element(value) {
-    this.value = value;
-    // eslint-disable-next-line func-names
-    this.stringify = function () {
-      return this.value;
-    };
+  element(/* value */) {
+    throw new Error('Not implemented');
   },
 
-  id(value) {
-    this.value = `#${value}`;
-    this.stringify = function () {
-      return this.value;
-    };
+  id(/* value */) {
+    throw new Error('Not implemented');
   },
 
-  class(value) {
-    this.value = `.${value}`;
-    this.stringify = function () {
-      return this.value;
-    };
+  class(/* value */) {
+    throw new Error('Not implemented');
   },
 
-  attr(value) {
-    this.value = `[${value}]`;
-    this.stringify = function () {
-      return this.value;
-    };
+  attr(/* value */) {
+    throw new Error('Not implemented');
   },
 
-  pseudoClass(value) {
-    this.value = `:${value}`;
-    this.stringify = function () {
-      return this.value;
-    };
+  pseudoClass(/* value */) {
+    throw new Error('Not implemented');
   },
 
-  pseudoElement(value) {
-    this.value = `::${value}`;
-    this.stringify = function () {
-      return this.value;
-    };
+  pseudoElement(/* value */) {
+    throw new Error('Not implemented');
   },
 
-  combine(selector1, combinator, selector2) {
-    this.stringify = function () {
-      return `${selector1.stringify()}${combinator}${selector2.stringify()}`;
-    };
+  combine(/* selector1, combinator, selector2 */) {
+    throw new Error('Not implemented');
   },
 };
 
